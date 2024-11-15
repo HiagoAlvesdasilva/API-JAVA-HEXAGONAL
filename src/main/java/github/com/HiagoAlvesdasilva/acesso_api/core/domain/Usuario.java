@@ -6,6 +6,7 @@ public class Usuario {
     private String email;
     private String senha;
     private boolean administrador;
+    private long idPessoa;
 
 
     public Usuario( ) {
