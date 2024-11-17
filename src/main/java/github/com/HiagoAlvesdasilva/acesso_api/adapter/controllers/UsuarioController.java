@@ -26,7 +26,26 @@ public class UsuarioController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UsuarioDTO create(@RequestBody UsuarioDTO usuarioDTO) {
-        return usuarioConverter.toDto(usuarioServicePorts.createUsuario(usuarioConverter
-                .toTomain(usuarioDTO)));
+        return usuarioConverter.toDto(usuarioServicePorts.createUsuario(usuarioConverter.toTomain(usuarioDTO)));
     }
+
+    @Operation(summary = "Buscar um usuário pelo ID")
+    @GetMapping("/{usuarioId}")
+    public UsuarioDTO findById(@PathVariable long usuarioId) {
+        return usuarioConverter.toDto(usuarioServicePorts.findById(usuarioId));
+    }
+
+    @Operation(summary = "Atualizar um usuário")
+    @PutMapping("/{usuarioId}")
+    public UsuarioDTO update(@PathVariable long usuarioId, @RequestBody UsuarioDTO usuarioDTO) {
+        return usuarioConverter.toDto(usuarioServicePorts.updateUsuario(usuarioId, usuarioConverter.toTomain(usuarioDTO)));
+    }
+
+    @Operation(summary = "Deletar um usuário")
+    @DeleteMapping("/{usuarioId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable long usuarioId) {
+        usuarioServicePorts.deleteUsuario(usuarioId);
+    }
+
 }
