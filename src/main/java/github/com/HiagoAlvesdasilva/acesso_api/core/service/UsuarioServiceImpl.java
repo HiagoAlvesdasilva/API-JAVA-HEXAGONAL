@@ -17,4 +17,20 @@ public class UsuarioServiceImpl implements UsuarioServicePorts {
         return usuarioRepositoryPorts.create(usuario);
     }
 
+    @Override
+    public Usuario findById(long usuarioId) {
+        return usuarioRepositoryPorts.findById(usuarioId);
+    }
+
+    @Override
+    public Usuario updateUsuario(long usuarioId, Usuario usuario) {
+        return usuarioRepositoryPorts.update(usuarioId, usuario);
+    }
+
+    @Override
+    public void deleteUsuario(long usuarioId) {
+        usuarioRepositoryPorts.delete(usuarioId);
+    }
+
+
 }

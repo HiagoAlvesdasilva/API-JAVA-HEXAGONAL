@@ -1,11 +1,12 @@
-package github.com.HiagoAlvesdasilva.acesso_api.adapter.repositories;
+package github.com.HiagoAlvesdasilva.acesso_api.adapter.repositories.usuario;
 
+import github.com.HiagoAlvesdasilva.acesso_api.adapter.entities.PessoaEntity;
 import github.com.HiagoAlvesdasilva.acesso_api.adapter.entities.UsuarioEntity;
+import github.com.HiagoAlvesdasilva.acesso_api.adapter.repositories.pessoa.PessoaRepository;
 import github.com.HiagoAlvesdasilva.acesso_api.core.domain.Usuario;
 import github.com.HiagoAlvesdasilva.acesso_api.core.ports.UsuarioRepositoryPorts;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-
 import java.util.Optional;
 
 @Component
@@ -13,15 +14,23 @@ public class UsuarioRepositoryAdapter implements UsuarioRepositoryPorts {
 
     private final UsuarioRepository usuarioRepository;
     private final ModelMapper modelMapper;
+    private final PessoaRepository pessoaRepository;
 
-    public UsuarioRepositoryAdapter(UsuarioRepository usuarioRepository, ModelMapper modelMapper) {
+    public UsuarioRepositoryAdapter(UsuarioRepository usuarioRepository, ModelMapper modelMapper, PessoaRepository pessoaRepository) {
         this.usuarioRepository = usuarioRepository;
         this.modelMapper = modelMapper;
+        this.pessoaRepository = pessoaRepository;
     }
 
     @Override
-    public Usuario create(Usuario usuario) {;
-        UsuarioEntity novoUsuario = usuarioRepository.save(modelMapper.map(usuario, UsuarioEntity.class));
+    public Usuario create(Usuario usuario) {
+        UsuarioEntity usuarioEntity = modelMapper.map(usuario, UsuarioEntity.class); // Salve a entidade Pessoa antes de salvar Usuario
+        PessoaEntity pessoaEntity = usuarioEntity.getPessoa();
+        if (pessoaEntity != null && pessoaEntity.getPessoaId() == 0) {
+            pessoaEntity = pessoaRepository.save(pessoaEntity);
+            usuarioEntity.setPessoa(pessoaEntity);
+        }
+        UsuarioEntity novoUsuario = usuarioRepository.save(usuarioEntity);
         return modelMapper.map(novoUsuario, Usuario.class);
     }
 

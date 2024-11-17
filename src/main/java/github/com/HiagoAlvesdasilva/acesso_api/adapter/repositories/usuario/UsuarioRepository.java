@@ -1,4 +1,4 @@
-package github.com.HiagoAlvesdasilva.acesso_api.adapter.repositories;
+package github.com.HiagoAlvesdasilva.acesso_api.adapter.repositories.usuario;
 
 import github.com.HiagoAlvesdasilva.acesso_api.adapter.entities.UsuarioEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

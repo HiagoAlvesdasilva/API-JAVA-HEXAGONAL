@@ -2,7 +2,7 @@ package github.com.HiagoAlvesdasilva.acesso_api.adapter.dtos;
 
 
 public class UsuarioDTO {
-    private long id;
+    private long usuarioId;
     private String nome;
     private String email;
     private String senha;
@@ -11,20 +11,20 @@ public class UsuarioDTO {
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(long id, String nome, String email, String senha, boolean administrador) {
-        this.id = id;
+    public UsuarioDTO(long usuarioId, String nome, String email, String senha, boolean administrador) {
+        this.usuarioId = usuarioId;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.administrador = administrador;
     }
 
-    public long getId() {
-        return id;
+    public long getusuarioId() {
+        return usuarioId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public String getNome() {

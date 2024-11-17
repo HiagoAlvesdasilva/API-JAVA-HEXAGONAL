@@ -2,30 +2,31 @@ package github.com.HiagoAlvesdasilva.acesso_api.core.domain;
 
 public class Usuario {
 
-    private long id;
+    private long usuarioId;
     private String nome;
     private String email;
     private String senha;
     private boolean administrador;
+    private Pessoa pessoa;
 
 
-    public Usuario() {
-    }
+    public Usuario() {}
 
-    public Usuario(long id, String nome, String email, String senha, boolean administrador) {
-        this.id = id;
+    public Usuario(long usuarioId, String nome, String email, String senha, boolean administrador, Pessoa pessoa) {
+        this.usuarioId = usuarioId;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.administrador = administrador;
+        this.pessoa = pessoa;
     }
 
-    public long getId() {
-        return id;
+    public long getusuarioId() {
+        return usuarioId;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.usuarioId = id;
     }
 
     public String getNome() {
@@ -58,5 +59,13 @@ public class Usuario {
 
     public void setAdministrador(boolean administrador) {
         this.administrador = administrador;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 }
