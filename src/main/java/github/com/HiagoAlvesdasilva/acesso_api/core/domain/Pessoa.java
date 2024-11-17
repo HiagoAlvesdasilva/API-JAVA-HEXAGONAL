@@ -1,23 +1,23 @@
 package github.com.HiagoAlvesdasilva.acesso_api.core.domain;
 
 public class Pessoa {
-    private long id;
+    private long usuarioId;
     private String nome;
 
     public Pessoa() {
     }
 
-    public Pessoa(long id, String nome) {
-        this.id = id;
+    public Pessoa(long usuarioId, String nome) {
+        this.usuarioId = usuarioId;
         this.nome = nome;
     }
 
-    public long getId() {
-        return id;
+    public long getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setUsuarioId(long usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public String getNome() {
