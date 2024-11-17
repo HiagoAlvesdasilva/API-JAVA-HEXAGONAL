@@ -24,7 +24,7 @@ public class UsuarioRepositoryAdapter implements UsuarioRepositoryPorts {
 
     @Override
     public Usuario create(Usuario usuario) {
-        UsuarioEntity usuarioEntity = modelMapper.map(usuario, UsuarioEntity.class); // Salve a entidade Pessoa antes de salvar Usuario
+        UsuarioEntity usuarioEntity = modelMapper.map(usuario, UsuarioEntity.class);
         PessoaEntity pessoaEntity = usuarioEntity.getPessoa();
         if (pessoaEntity != null && pessoaEntity.getPessoaId() == 0) {
             pessoaEntity = pessoaRepository.save(pessoaEntity);
